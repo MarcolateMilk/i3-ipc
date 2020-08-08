@@ -43,10 +43,16 @@ newtype Connection
 -- | Establish a connection to i3.
 connect :: IO Connection
 connect
-  = bracketOnError (socket AF_UNIX Stream defaultProtocol) close $ \ sock -> do
+  = bracketOnError (socket AF_UNIX Stream 0) S.close $ \ sock -> do
     path <- socketPath
     S.connect sock $ SockAddrUnix path
     return $ Connection sock
+
+
+-- | Close the connection.
+close :: Connection -> IO ()
+close (Connection sock)
+  = gracefulClose sock 1000
 
 
 -- | Get the socket path from i3.

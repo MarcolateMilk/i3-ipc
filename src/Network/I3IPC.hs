@@ -8,6 +8,7 @@ module Network.I3IPC
 
     Connection
   , connect
+  , close
 
 
 
