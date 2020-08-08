@@ -25,6 +25,9 @@ main = do
   print workspaces
   print version
 
+  -- Close the connection
+  close con
+
   -- Example event listening
   listen [ ET'Window, ET'Mode, ET'Binding ] $ \ case
     WindowEvent  info -> print $ ie'container info
