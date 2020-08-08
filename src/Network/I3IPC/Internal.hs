@@ -211,5 +211,6 @@ encodePretty :: ToJSON a => a -> ByteString
 encodePretty
   = encodePretty' defConfig
   { confIndent          = Spaces 2
+  , confCompare         = compare
   , confTrailingNewline = True
   }
