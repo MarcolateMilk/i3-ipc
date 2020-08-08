@@ -267,9 +267,9 @@ instance Show EventType
 -- race conditions. If an exception is raised while listening, the socket will
 -- be closed gracefully and the exception re-raised thanks to `bracket`.
 listen
-  :: [EventType]      -- ^ Events to listen to
-  -> (Event -> IO ()) -- ^ Event handler
-  -> IO ()
+ :: [EventType]      -- ^ Events to listen to
+ -> (Event -> IO ()) -- ^ Event handler
+ -> IO ()
 
 listen types handler
   = bracket connect close $ \ con -> do

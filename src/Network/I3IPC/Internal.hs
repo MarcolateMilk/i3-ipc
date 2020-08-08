@@ -116,10 +116,10 @@ data MessageType
 
 -- | Send a message to i3.
 sendMessage
-  :: Connection
-  -> MessageType -- ^ Type of message to send
-  -> ByteString  -- ^ Payload to send
-  -> IO ()
+ :: Connection
+ -> MessageType -- ^ Type of message to send
+ -> ByteString  -- ^ Payload to send
+ -> IO ()
 
 sendMessage (Connection sock) mType msg
   = sendAll sock $ runPut $ do
@@ -131,8 +131,8 @@ sendMessage (Connection sock) mType msg
 
 -- | Receive a message from i3.
 recvMessage
-  :: Connection
-  -> IO (Word32, ByteString) -- ^ Reply message type and payload
+ :: Connection
+ -> IO (Word32, ByteString) -- ^ Reply message type and payload
 
 recvMessage (Connection sock)
   = do
@@ -160,11 +160,11 @@ recvMessage (Connection sock)
 
 -- | Send a message to i3, receive the reply and decode it.
 exchange
-  :: FromJSON a
-  => Connection
-  -> MessageType -- ^ Type of message to send
-  -> ByteString  -- ^ Payload to send
-  -> IO a        -- ^ Decoded reply
+ :: FromJSON a
+ => Connection
+ -> MessageType -- ^ Type of message to send
+ -> ByteString  -- ^ Payload to send
+ -> IO a        -- ^ Decoded reply
 
 exchange con mType msg
   = do
