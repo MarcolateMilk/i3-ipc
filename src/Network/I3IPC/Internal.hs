@@ -4,6 +4,7 @@
 module Network.I3IPC.Internal where
 
 import Data.Aeson
+import Data.Aeson.Encode.Pretty
 import Data.ByteString.Lazy   ( ByteString )
 import Data.Binary.Get
 import Data.Binary.Put
@@ -204,4 +205,12 @@ keyOptions :: JSONKeyOptions
 keyOptions
   = defaultJSONKeyOptions
   { keyModifier = camelTo2 '_' . drop 3
+  }
+
+
+encodePretty :: ToJSON a => a -> ByteString
+encodePretty
+  = encodePretty' defConfig
+  { confIndent          = Spaces 2
+  , confTrailingNewline = True
   }

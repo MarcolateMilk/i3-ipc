@@ -6,8 +6,7 @@
 module Network.I3IPC.Event where
 
 import Data.Aeson
-import Data.Aeson.Encode.Pretty ( encodePretty )
-import Data.Text                ( Text )
+import Data.Text              ( Text )
 import GHC.Generics
 
 import Data.ByteString.Lazy.Char8 as C

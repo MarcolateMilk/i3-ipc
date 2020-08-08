@@ -7,10 +7,9 @@ module Network.I3IPC.Reply where
 
 import Data.Aeson
 import Data.Aeson.Encoding
-import Data.Aeson.Encode.Pretty ( encodePretty )
-import Data.Map                 ( Map )
-import Data.Scientific          ( floatingOrInteger )
-import Data.Text                ( Text )
+import Data.Map               ( Map )
+import Data.Scientific        ( floatingOrInteger )
+import Data.Text              ( Text )
 import GHC.Generics
 
 import Network.I3IPC.Internal
