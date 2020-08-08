@@ -78,14 +78,14 @@ data WorkspaceEventInfo
 
   = WorkspaceEventInfo
 
-  { se'change                :: !WorkspaceChange
+  { we'change                :: !WorkspaceChange
     -- ^ Indicates the type of the change.
 
-  , se'workspace             :: !(Maybe Workspace)
+  , we'workspace             :: !(Maybe Workspace)
     -- ^ Will be present with the affected workspace whenever the type of event
     -- affects a workspace.
 
-  , se'old                   :: !(Maybe Workspace)
+  , we'old                   :: !(Maybe Workspace)
     -- ^ Will be present with an old workspace whenever the change is @focus@.
 
   }
@@ -285,10 +285,10 @@ data WindowEventInfo
 
   = WindowEventInfo
 
-  { we'change                :: !WindowChange
+  { ie'change                :: !WindowChange
     -- ^ Indicates the type of the change.
 
-  , we'container             :: !Node
+  , ie'container             :: !Node
     -- ^ Consists of the window's parent container. Be aware that for the @new@
     -- event, the container will hold the initial name of the newly reparented
     -- window (e.g. if you run urxvt with a shell that changes the title, you
