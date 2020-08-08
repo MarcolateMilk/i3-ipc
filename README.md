@@ -27,7 +27,7 @@ main = do
 
   -- Example event listening
   listen [ ET'Window, ET'Mode, ET'Binding ] $ \ case
-    WindowEvent  info -> print $ we'container info
+    WindowEvent  info -> print $ ie'container info
     ModeEvent    info -> print $ me'change info
     BindingEvent info -> print $ be'change info
 ```
