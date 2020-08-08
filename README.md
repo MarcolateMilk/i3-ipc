@@ -14,7 +14,7 @@ main :: IO ()
 main = do
 
   -- Connect to i3's IPC socket
-  con <- connection
+  con <- connect
 
   -- A few example messages
   commands   <- runCommand con "reload"
