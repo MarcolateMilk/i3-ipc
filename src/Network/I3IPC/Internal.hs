@@ -195,7 +195,6 @@ encodingOptions
   = defaultOptions
   { fieldLabelModifier     = camelTo2 '_' . drop 3
   , constructorTagModifier = camelTo2 '_' . drop 3
-  , omitNothingFields      = True
   , sumEncoding            = UntaggedValue
   , unwrapUnaryRecords     = True
   }
