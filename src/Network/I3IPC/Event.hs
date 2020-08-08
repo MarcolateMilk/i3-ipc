@@ -80,11 +80,11 @@ data WorkspaceEventInfo
   { we'change                :: !WorkspaceChange
     -- ^ Indicates the type of the change.
 
-  , we'workspace             :: !(Maybe Workspace)
+  , we'workspace             :: !(Maybe Node)
     -- ^ Will be present with the affected workspace whenever the type of event
     -- affects a workspace.
 
-  , we'old                   :: !(Maybe Workspace)
+  , we'old                   :: !(Maybe Node)
     -- ^ Will be present with an old workspace whenever the change is @focus@.
 
   }
