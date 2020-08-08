@@ -1,0 +1,42 @@
+name:                i3-ipc
+version:             0.1.0.0
+github:              "MarcolateMilk/i3-ipc"
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/MarcolateMilk/i3-ipc#readme>
+
+extra-source-files:
+- LICENSE
+- README.md
+
+dependencies:
+- aeson
+- aeson-pretty
+- base >= 4.7 && < 5
+- binary
+- bytestring
+- containers
+- network
+- process
+- scientific
+- text
+
+library:
+  source-dirs: src
+
+tests:
+  i3-ipc-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - i3-ipc
