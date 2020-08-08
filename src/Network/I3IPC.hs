@@ -131,6 +131,7 @@ module Network.I3IPC
 import Data.Aeson
 import Data.Bits
 import Data.ByteString.Lazy   ( ByteString )
+import Control.Exception      ( bracket )
 import GHC.Generics
 
 import qualified Data.ByteString.Lazy.Char8 as C
@@ -263,15 +264,15 @@ instance Show EventType
 -- | Listen for events indefinately.
 --
 -- This function creates a seperate connection for event handling only to avoid
--- race conditions.
+-- race conditions. If an exception is raised while listening, the socket will
+-- be closed gracefully and the exception re-raised thanks to `bracket`.
 listen
   :: [EventType]      -- ^ Events to listen to
   -> (Event -> IO ()) -- ^ Event handler
   -> IO ()
 
 listen types handler
-  = do
-    con <- connect
+  = bracket connect close $ \ con -> do
     sub <- exchange con SUBSCRIBE (encode types)
     if sb'success sub
       then loop con
