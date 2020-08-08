@@ -7,7 +7,7 @@ module Network.I3IPC
   ( -- * Connection
 
     Connection
-  , connection
+  , connect
 
 
 
@@ -131,7 +131,6 @@ import Data.Aeson
 import Data.Bits
 import Data.ByteString.Lazy   ( ByteString )
 import GHC.Generics
-import Network.Socket  hiding ( listen )
 
 import qualified Data.ByteString.Lazy.Char8 as C
 
@@ -271,7 +270,7 @@ listen
 
 listen types handler
   = do
-    con <- connection
+    con <- connect
     sub <- exchange con SUBSCRIBE (encode types)
     if sb'success sub
       then loop con

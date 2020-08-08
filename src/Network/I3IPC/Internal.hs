@@ -17,6 +17,7 @@ import Text.Printf            ( printf )
 
 import qualified Data.ByteString.Lazy       as W
 import qualified Data.ByteString.Lazy.Char8 as C
+import qualified Network.Socket             as S
 
 
 
@@ -40,11 +41,11 @@ newtype Connection
 
 
 -- | Establish a connection to i3.
-connection :: IO Connection
-connection
+connect :: IO Connection
+connect
   = bracketOnError (socket AF_UNIX Stream defaultProtocol) close $ \ sock -> do
     path <- socketPath
-    connect sock $ SockAddrUnix path
+    S.connect sock $ SockAddrUnix path
     return $ Connection sock
 
 
