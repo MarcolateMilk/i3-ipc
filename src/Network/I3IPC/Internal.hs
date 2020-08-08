@@ -9,6 +9,7 @@ import Data.ByteString.Lazy   ( ByteString )
 import Data.Binary.Get
 import Data.Binary.Put
 import Data.Word
+import Control.Exception      ( bracketOnError )
 import Network.Socket
 import Network.Socket.ByteString.Lazy
 import System.Process         ( readProcess )
@@ -41,8 +42,7 @@ newtype Connection
 -- | Establish a connection to i3.
 connection :: IO Connection
 connection
-  = do
-    sock <- socket AF_UNIX Stream defaultProtocol
+  = bracketOnError (socket AF_UNIX Stream defaultProtocol) close $ \ sock -> do
     path <- socketPath
     connect sock $ SockAddrUnix path
     return $ Connection sock
